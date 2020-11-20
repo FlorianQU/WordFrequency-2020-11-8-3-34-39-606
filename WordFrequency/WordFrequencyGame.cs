@@ -18,9 +18,9 @@ namespace WordFrequency
                 string[] arr = Regex.Split(inputStr, @"\s+");
 
                 List<Input> inputList = new List<Input>();
-                foreach (var s in arr)
+                foreach (var word in arr)
                 {
-                    Input input = new Input(s, 1);
+                    Input input = new Input(word, 1);
                     inputList.Add(input);
                 }
 
@@ -41,10 +41,10 @@ namespace WordFrequency
                 List<string> strList = new List<string>();
 
                 //stringJoiner joiner = new stringJoiner("\n");
-                foreach (Input w in inputList)
+                foreach (Input input in inputList)
                 {
-                    string s = w.Value + " " + w.WordCount;
-                    strList.Add(s);
+                    string str = input.Value + " " + input.WordCount;
+                    strList.Add(str);
                 }
 
                 return string.Join("\n", strList.ToArray());
