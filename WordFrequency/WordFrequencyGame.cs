@@ -19,52 +19,52 @@ namespace WordFrequency
 
             string[] splitStrings = splitInputStringArray;
 
-            List<Input> inputList = new List<Input>();
+            List<WordCount> inputList = new List<WordCount>();
             foreach (var word in splitStrings)
             {
-                Input input = new Input(word, 1);
-                inputList.Add(input);
+                WordCount wordCount = new WordCount(word, 1);
+                inputList.Add(wordCount);
             }
 
             //get the map for the next step of sizing the same word
-            Dictionary<string, List<Input>> map = GetListMap(inputList);
+            Dictionary<string, List<WordCount>> map = SizingList(inputList);
 
-            List<Input> list = new List<Input>();
+            List<WordCount> list = new List<WordCount>();
             foreach (var entry in map)
             {
-                Input input = new Input(entry.Key, entry.Value.Count);
-                list.Add(input);
+                WordCount wordCount = new WordCount(entry.Key, entry.Value.Count);
+                list.Add(wordCount);
             }
 
             inputList = list;
 
-            inputList.Sort((w1, w2) => w2.WordCount - w1.WordCount);
+            inputList.Sort((w1, w2) => w2.Count - w1.Count);
 
             List<string> strList = RenderInputList(inputList);
 
             return string.Join("\n", strList.ToArray());
         }
 
-        private static List<string> RenderInputList(List<Input> inputList)
+        private static List<string> RenderInputList(List<WordCount> inputList)
         {
             List<string> strList = new List<string>();
-            foreach (Input input in inputList)
+            foreach (WordCount input in inputList)
             {
-                string str = input.Value + " " + input.WordCount;
+                string str = input.Value + " " + input.Count;
                 strList.Add(str);
             }
 
             return strList;
         }
 
-        private Dictionary<string, List<Input>> GetListMap(List<Input> inputList)
+        private Dictionary<string, List<WordCount>> SizingList(List<WordCount> inputList)
         {
-            Dictionary<string, List<Input>> map = new Dictionary<string, List<Input>>();
+            Dictionary<string, List<WordCount>> map = new Dictionary<string, List<WordCount>>();
             foreach (var input in inputList)
             {
                 if (!map.ContainsKey(input.Value))
                 {
-                    List<Input> arr = new List<Input>();
+                    List<WordCount> arr = new List<WordCount>();
                     arr.Add(input);
                     map.Add(input.Value, arr);
                 }
