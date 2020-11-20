@@ -20,5 +20,10 @@
         {
             get { return this.count; }
         }
+
+        public string Render()
+        {
+            return $"{this.Value} {this.Count}";
+        }
     }
 }

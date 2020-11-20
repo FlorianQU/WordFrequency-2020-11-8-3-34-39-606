@@ -12,10 +12,6 @@ namespace WordFrequency
         {
             spacePattern = @"\s+";
             var splitInputStringArray = Regex.Split(inputStr, spacePattern);
-            if (splitInputStringArray.Length == 1)
-            {
-                return inputStr + " 1";
-            }
 
             string[] splitStrings = splitInputStringArray;
 
@@ -38,7 +34,7 @@ namespace WordFrequency
 
             inputList = list;
 
-            inputList.Sort((w1, w2) => w2.Count - w1.Count);
+            inputList.Sort((wordCount1, wordCount2) => wordCount2.Count - wordCount1.Count);
 
             List<string> strList = RenderInputList(inputList);
 
@@ -50,7 +46,7 @@ namespace WordFrequency
             List<string> strList = new List<string>();
             foreach (WordCount input in inputList)
             {
-                string str = input.Value + " " + input.Count;
+                string str = input.Render();
                 strList.Add(str);
             }
 
