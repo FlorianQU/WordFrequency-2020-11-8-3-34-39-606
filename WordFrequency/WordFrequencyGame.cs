@@ -14,7 +14,6 @@ namespace WordFrequency
             }
             else
             {
-                //split the input string with 1 to n pieces of spaces
                 string[] splitStrings = Regex.Split(inputStr, @"\s+");
 
                 List<Input> inputList = new List<Input>();
@@ -40,7 +39,6 @@ namespace WordFrequency
 
                 List<string> strList = new List<string>();
 
-                //stringJoiner joiner = new stringJoiner("\n");
                 foreach (Input input in inputList)
                 {
                     string str = input.Value + " " + input.WordCount;
@@ -56,7 +54,6 @@ namespace WordFrequency
             Dictionary<string, List<Input>> map = new Dictionary<string, List<Input>>();
             foreach (var input in inputList)
             {
-                //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
                 if (!map.ContainsKey(input.Value))
                 {
                     List<Input> arr = new List<Input>();
