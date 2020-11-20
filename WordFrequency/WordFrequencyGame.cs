@@ -40,15 +40,21 @@ namespace WordFrequency
 
             inputList.Sort((w1, w2) => w2.WordCount - w1.WordCount);
 
-            List<string> strList = new List<string>();
+            List<string> strList = RenderInputList(inputList);
 
+            return string.Join("\n", strList.ToArray());
+        }
+
+        private static List<string> RenderInputList(List<Input> inputList)
+        {
+            List<string> strList = new List<string>();
             foreach (Input input in inputList)
             {
                 string str = input.Value + " " + input.WordCount;
                 strList.Add(str);
             }
 
-            return string.Join("\n", strList.ToArray());
+            return strList;
         }
 
         private Dictionary<string, List<Input>> GetListMap(List<Input> inputList)
